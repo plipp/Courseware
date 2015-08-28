@@ -1,48 +1,43 @@
 # Introduction in the Playframework
 
-Bases on the Typesafe Reactor project seeds from:
-- [Java Seed](https://www.typesafe.com/activator/template/play-java-reactive-platform-15v01)
-    - [Sources](https://github.com/playframework/playframework/tree/master/templates/play-java)
-- [Scala Seed](https://www.typesafe.com/activator/template/play-scala-reactive-platform-15v01)
-    - [Sources](https://github.com/playframework/playframework/tree/master/templates/play-scala)
-
-## Topics
-
+## Threaded vs Evented
 Inspired by [Play Framework: async I/O without the thread pool and callback hell](http://engineering.linkedin.com/play/play-framework-async-io-without-thread-pool-and-callback-hell)
 
-### Thread Pool vs Events
-TODO: 
+In a threaded world downstream latency may escalate:
 
-### Basic Skeleton (Scala Seed)
+![1 slow service](play-framework-threaded-downstream-slowness-1.jpg)
 
-- application.conf
-- routes
-   -> Controller 1
-      - with simple action (no async)
-      -> Result for 
-	  -  index.scala.html
-	  -> main.scala.html
-    
-- Initial Tests
-    - ApplicationSpec with FakeApplication/Request...
-    - IntegrationSpec with running Application (Selenium)
-      - Starts play
+![... escalating ...](play-framework-threaded-downstream-slowness-2.jpg)
 
-- Running Play in IntelliJ: Play2 Run Configuration (or: sbt run)
+Boom!!!
 
-### WebService Call
+[Taken from slideshare brikis98](http://www.slideshare.net/brikis98/play-framework-async-io-with-java-and-scala/19)
 
-- Controller 2
-    - with async call to other WS (-> Future)
+The greatest challenge is the right scaling of the thread pool, which depends on the actual number of incoming requests and therefore is highly dynamic.
 
-### From List to Future
+One possible answer to this problem is event-driven with not blocking IO, which are the underlaying concepts of [Play](https://www.playframework.com/)
+TODO graphics etc...
 
-- map, flatMap ...
+## Basic Play Samples
 
-- recover
+- [Scala-Sample](./play-scala): Work in Progress
+- [Java-Sample](./play-java): TBD
 
+The samples start from the Typesafe Reactor project seeds:
+
+- [Scala Seed](https://www.typesafe.com/activator/template/play-scala-reactive-platform-15v01)
+    - [Sources](https://github.com/playframework/playframework/tree/master/templates/play-scala)
+- [Java Seed](https://www.typesafe.com/activator/template/play-java-reactive-platform-15v01)
+    - [Sources](https://github.com/playframework/playframework/tree/master/templates/play-java)
+
+They show/demonstrate
+
+- The basic seeds/skeletons
+- WebService Calls
+    - synchronous/blocking vs.
+    - asynchronous (Futures/Promises)
+- the relation between Lists and Futures
+    - map, flatMap ...
+    - Future Errorhandling
 ...
 
-### Playing around
-
-- sbt/console | Worksheets with play-interaction
