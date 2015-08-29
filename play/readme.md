@@ -1,22 +1,26 @@
 # Introduction in the Playframework
 
-## Threaded vs Evented
-Inspired by [Play Framework: async I/O without the thread pool and callback hell](http://engineering.linkedin.com/play/play-framework-async-io-without-thread-pool-and-callback-hell)
+This is an introductory workshop into the [Play Framework](https://www.playframework.com/), inspired by [Play Framework: async I/O without the thread pool and callback hell](http://engineering.linkedin.com/play/play-framework-async-io-without-thread-pool-and-callback-hell).
 
-In a threaded world downstream latency may escalate:
+It puts the main emphasis on how Play handles async IO.
 
-![1 slow service](play-framework-threaded-downstream-slowness-1.jpg)
+## Async IO - Threaded vs Evented
 
-![... escalating ...](play-framework-threaded-downstream-slowness-2.jpg)
+### A Threaded World
+In the classic threaded world each incoming request is handled by a distinct thread. This thread is blocked until the reponse is sent back to the requester.
 
-Boom!!!
+![Waiting Requests](https://strongloop.com/wp-content/uploads/2014/01/threading_java.png)
 
-[Taken from slideshare brikis98](http://www.slideshare.net/brikis98/play-framework-async-io-with-java-and-scala/19)
+Blocking IO and a undersized thread pool may slow down incoming requests.<br>
+The greatest challenge here is the right scaling of the thread pool, which depends on the actual number of incoming requests and therefore is highly dynamic.
 
-The greatest challenge is the right scaling of the thread pool, which depends on the actual number of incoming requests and therefore is highly dynamic.
+### One possible Answer - Event-Driven with Non-Blocking IO
 
-One possible answer to this problem is event-driven with not blocking IO, which are the underlaying concepts of [Play](https://www.playframework.com/)
-TODO graphics etc...
+![NodeJs Event Loop](https://strongloop.com/wp-content/uploads/2014/01/threading_node.png)
+
+Here the incoming request is not handled by the dispatcher thread, but by (possibly another) worker-thread. The dispatcher thread is free to accept new requests.
+
+This is the underlaying concept e.g. of NodeJs and of the [Play-Framework](https://www.playframework.com/) as well.
 
 ## Basic Play Samples
 
@@ -38,6 +42,6 @@ They show/demonstrate
     - asynchronous (Futures/Promises)
 - the relation between Lists and Futures
     - map, flatMap ...
-    - Future Errorhandling
+- Future Errorhandling
 ...
 
