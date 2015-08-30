@@ -6,9 +6,10 @@ val possiblyFailingFuture = Future {if (counter<0) throw new IllegalArgumentExce
 
 // ------------------------------------------------------------------
 // onX
-val mappedFeature = possiblyFailingFuture.map(counter => counter*2)
 var result = -100 // mutable!
-mappedFeature.onFailure({case _:IllegalArgumentException => result = 0})
-mappedFeature.onSuccess({case cnt => result = cnt})
+possiblyFailingFuture.onFailure({case _:IllegalArgumentException => result = 0})
+possiblyFailingFuture.onSuccess({case cnt => result = cnt})
+
+possiblyFailingFuture.value
 result
 

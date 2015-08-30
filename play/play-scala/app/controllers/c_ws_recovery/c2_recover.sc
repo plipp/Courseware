@@ -12,9 +12,8 @@ val possiblyFailingFuture = Future {if (counter<0) throw new IllegalArgumentExce
 
 // ------------------------------------------------------------------
 // recover
-val mappedFeature = possiblyFailingFuture.map(counter => counter*2)
-Await.result(mappedFeature.recover({case _:IllegalArgumentException => 0}), Duration(2, TimeUnit.SECONDS))
+Await.result(possiblyFailingFuture.recover({case _:IllegalArgumentException => 0}), Duration(2, TimeUnit.SECONDS))
 
 // TODO decomment
-// Await.result(mappedFeature.recover({case _:NullPointerException => 0}), Duration(2, TimeUnit.SECONDS))
+// Await.result(possiblyFailingFuture.recover({case _:NullPointerException => 0}), Duration(2, TimeUnit.SECONDS))
 

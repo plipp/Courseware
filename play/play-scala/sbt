@@ -3,7 +3,6 @@
 # A more capable sbt runner, coincidentally also called sbt.
 # Author: Paul Phillips <paulp@improving.org>
 
-# todo - make this dynamic
 declare -r sbt_release_version="0.13.9"
 declare -r sbt_unreleased_version="0.13.9"
 declare -r buildProps="project/build.properties"
@@ -455,7 +454,7 @@ EOM
   exit 1
 }
 
-# pick up completion if present; todo
+# pick up completion if present;
 [[ -r .sbt_completion.sh ]] && source .sbt_completion.sh
 
 # no jar? download it.
