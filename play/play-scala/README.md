@@ -71,6 +71,11 @@ TODO timeout-handling, authorization...
 
 # TODOs
 
+- Exercises 
+  - for the single topics
+  - 1 for the whole workshop
+
 - check Threads in the PUI - Tomcat vs. Play
+
 
 
