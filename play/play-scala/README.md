@@ -36,6 +36,7 @@ Inspired by [Play Framework: async I/O without the thread pool and callback hell
 2. _controllers/b_list_to_future/b1_flatMap.sc_
 3. _controllers/b_list_to_future/b3_for_comprehension.sc_
 4. optional: _controllers/b_list_to_future/b4_fold_opt.sc_
+5. TODO: _controllers/b_list_to_future/b5_async_await.sc_
 
 #### Key difference:
 
@@ -72,8 +73,8 @@ TODO timeout-handling, authorization...
 # TODOs
 
 - Exercises 
-  - for the single topics
-  - 1 for the whole workshop
+    - for the single topics
+    - 1 for the whole workshop
 
 - check Threads in the PUI - Tomcat vs. Play
 
