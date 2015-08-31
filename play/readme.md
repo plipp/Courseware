@@ -14,7 +14,7 @@ In the classic threaded world each incoming request is handled by a distinct thr
 Blocking IO and a undersized thread pool may slow down incoming requests.<br>
 The greatest challenge here is the right scaling of the thread pool, which depends on the actual number of incoming requests and therefore is highly dynamic.
 
-### One possible Answer - Event-Driven with Non-Blocking IO
+### One possible Answer - Event/Message-Driven with Non-Blocking IO
 
 ![NodeJs Event Loop](https://strongloop.com/wp-content/uploads/2014/01/threading_node.png)
 
@@ -44,4 +44,9 @@ They show/demonstrate
     - map, flatMap ...
 - Future Errorhandling
 ...
+
+# Ideas for further Workshops
+
+- Testing in Play
+- ...
 
