@@ -3,6 +3,11 @@
 Bases on the Typesafe Reactor project [Scala Seed](https://www.typesafe.com/activator/template/play-scala-reactive-platform-15v01)
 ([Sources](https://github.com/playframework/playframework/tree/master/templates/play-scala))
 
+## Preconditions
+
+- IntelliJ CE or UE with SBT-Plugin
+  (.sc-Files are IntelliJ-Worksheets)
+
 ## Topics
 
 Inspired by [Play Framework: async I/O without the thread pool and callback hell](http://engineering.linkedin.com/play/play-framework-async-io-without-thread-pool-and-callback-hell)
@@ -75,8 +80,9 @@ TODO timeout-handling, authorization...
 - Exercises 
     - for the single topics
     - 1 for the whole workshop
+    - Ideas:
+        - Multi-get: parallel/sequential
+            - without
+            - with recovery
 
 - check Threads in the PUI - Tomcat vs. Play
-
-
-
