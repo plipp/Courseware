@@ -12,6 +12,7 @@ libraryDependencies ++= Seq(
   ws,
   "org.scala-lang.modules" %% "scala-async" % "0.9.2",
   "org.apache.httpcomponents" % "httpclient" % "4.3.4",
+  "de.leanovate.play-mockws" % "play-mockws_2.11" % "2.4.0",
   specs2 % Test
 
 )
