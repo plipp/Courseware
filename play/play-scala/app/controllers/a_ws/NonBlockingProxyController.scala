@@ -1,14 +1,15 @@
 package controllers.a_ws
 
+import com.google.inject.Inject
 import play.api.Logger
 import play.api.Play.current
-import play.api.libs.ws.{WS, WSRequest, WSResponse}
+import play.api.libs.ws.{WSClient, WSRequest, WSResponse}
 import play.api.mvc.{Action, AnyContent, Controller, Result}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
-class NonBlockingProxyController extends Controller {
+class NonBlockingProxyController @Inject() (ws: WSClient) extends Controller {
 
   /**
    * 0  application.conf -> play.ws.timeout.connection
@@ -28,7 +29,7 @@ class NonBlockingProxyController extends Controller {
     request => {
       Logger.info("BEGIN: doProxy (non-blocking)")
       val proxiedRequest: WSRequest =
-        WS.url(request.getQueryString("url").getOrElse("http://blackhole.webpagetest.org"))
+        ws.url(request.getQueryString("url").getOrElse("http://blackhole.webpagetest.org"))
 
       val eventualResponse: Future[WSResponse] = proxiedRequest.get()
 
