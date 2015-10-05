@@ -11,5 +11,6 @@ possiblyFailingFuture.onFailure({case _:IllegalArgumentException => result = 0})
 possiblyFailingFuture.onSuccess({case cnt => result = cnt})
 
 possiblyFailingFuture.value
+possiblyFailingFuture.isCompleted
 result
 
