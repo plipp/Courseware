@@ -26,7 +26,8 @@ implicit val wsClient: WSClient = NingWSClient()
 
 // ============================================================================
 // call websites
-// - http://www.heise.de
+// - http://www.heise.de or
+//   http://localhost:9000/doCalculate (-> show controller)
 // - http://blackhole.webpagetest.org
 // peek into
 // get results (BLOCKING way)

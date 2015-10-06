@@ -66,3 +66,7 @@ TODO loan-pattern, timeout-handling, authorization...
 # Links
 
 - [official Scala Future Site](http://docs.scala-lang.org/overviews/core/futures.html)
+
+# TODOs
+- own blocking controller
+- Tests (instead of WS) for exercises
