@@ -11,7 +11,7 @@ class AllAnswersController extends Controller {
 
   /**
    *  1. Call e.g. in browser with:
-   *     - http://localhost:9000/doAnswer?question=how
+   *     - http://localhost:9000/doAnswer?question=how => 42
    */
     def doAnswer (): Action[AnyContent] = Action.async { /* Action.async(block: R[AnyContent] => Future[Result]): Action[AnyContent]*/
       request => {
@@ -28,7 +28,7 @@ class AllAnswersController extends Controller {
 
   /**
    *  1. Call e.g. in browser with:
-   *     - http://localhost:9000/calculate?number=5
+   *     - http://localhost:9000/calculate?number=5  ==> 4
    */
     def doCalculate (): Action[AnyContent] = Action.async { /* Action.async(block: R[AnyContent] => Future[Result]): Action[AnyContent]*/
       request => {

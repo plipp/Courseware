@@ -8,7 +8,7 @@ val possiblyFailingFuture = Future {
 }
 
 // ------------------------------------------------------------------
-// onX
+// Callbacks II
 var result = -100 // mutable!
 possiblyFailingFuture.onComplete((eventualCounter: Try[Int]) =>
   eventualCounter match {

@@ -9,8 +9,8 @@ import scala.concurrent.{Await, Future}
 def doANonBlockingNetworkCall(uri: String)(implicit wsClient: WSClient): Future[Int] = {
   println("BEGIN: doANonBlockingNetworkCall")
 
-  val proxiedRequest: WSRequest = wsClient.url(uri)
-  val eventualResponse: Future[WSResponse] = proxiedRequest.get()
+  val request: WSRequest = wsClient.url(uri)
+  val eventualResponse: Future[WSResponse] = request.get()
 
   val eventualResult: Future[Int] =
     eventualResponse.map(response => {
@@ -22,6 +22,7 @@ def doANonBlockingNetworkCall(uri: String)(implicit wsClient: WSClient): Future[
   eventualResult
 }
 implicit val wsClient: WSClient = NingWSClient()
+
 // -----------------------------------------------------
 
 // ============================================================================
@@ -33,6 +34,7 @@ val eventualResultOfBlackHole = doANonBlockingNetworkCall("http://blackhole.webp
 // ============================================================================
 
 println("================== FINISHED ? No ==> get the real results ...")
+
 // peek into futures
 val heiseValue = eventualResultOfHeiseCall.value
 eventualResultOfHeiseCall.isCompleted
@@ -43,7 +45,6 @@ eventualResultOfBlackHole.isCompleted
 val realHeiseResultStatus = Await.result(eventualResultOfHeiseCall, Duration(1, TimeUnit.SECONDS))
 val heiseValueAfterAwait = eventualResultOfHeiseCall.value
 eventualResultOfHeiseCall.isCompleted
-
 // TODO: recall Try->Success
 val realBlackHoleStatus = try {
   Await.result(eventualResultOfBlackHole, Duration(1, TimeUnit.SECONDS))
@@ -51,8 +52,6 @@ val realBlackHoleStatus = try {
   case e: Throwable => println(s"Black Hole timed out...$e")
     -1
 }
-
 val blackHoleValueAfterAwait = eventualResultOfBlackHole.value
 eventualResultOfBlackHole.isCompleted
-
 println("================== really FINISHED")

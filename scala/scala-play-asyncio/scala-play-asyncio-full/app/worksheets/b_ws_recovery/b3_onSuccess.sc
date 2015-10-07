@@ -5,7 +5,7 @@ val counter = -100
 val possiblyFailingFuture = Future {if (counter<0) throw new IllegalArgumentException else counter}
 
 // ------------------------------------------------------------------
-// onX
+// Callbacks I
 var result = -100 // mutable!
 possiblyFailingFuture.onFailure({case _:IllegalArgumentException => result = 0})
 possiblyFailingFuture.onSuccess({case cnt => result = cnt})

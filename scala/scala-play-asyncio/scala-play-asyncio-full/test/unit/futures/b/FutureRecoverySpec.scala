@@ -25,6 +25,9 @@ class FutureRecoverySpec extends Specification {
       .map(result => result * 2)
       .recover({case _ => -1})
 
+
+  // ----------------------------------------------------------------------
+  // the test
   "consumeSomeThingDangerous" should {
     "multiply allowed values with 2" in {
       val result = Await.result(consumeSomeThingDangerous(11), Duration.Inf)
