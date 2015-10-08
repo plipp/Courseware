@@ -4,10 +4,8 @@ import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
 
-import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, Future}
-import scala.util.Try
 
 @RunWith(classOf[JUnitRunner])
 class FutureRecoverySpec extends Specification {
@@ -15,12 +13,14 @@ class FutureRecoverySpec extends Specification {
   def givenDoSomethingDangerous(i: Int): Future[Int] = {
     if (i % 2 == 0) throw new IllegalStateException
     else if (i % 3 == 0) Future.failed(new IllegalArgumentException)
-    else Future.successful(i)
+    else Future.successful(i*2)
   }
 
   // code under test: FIXME
   def consumeSomeThingDangerous(i: Int): Future[Int] = givenDoSomethingDangerous(i)
 
+  // ----------------------------------------------------------------------
+  // the test
   "consumeSomeThingDangerous" should {
     "multiply allowed values with 2" in {
       val result = Await.result(consumeSomeThingDangerous(11), Duration.Inf)

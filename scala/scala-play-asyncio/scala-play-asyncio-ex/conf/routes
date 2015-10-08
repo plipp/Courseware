@@ -9,6 +9,7 @@ GET        /proxy               controllers.proxySample.NonBlockingProxyControll
 GET        /recoveredProxy      controllers.proxySample.NonBlockingRecoveredProxyController.doProxy
 GET        /doAnswer            controllers.myserver.AllAnswersController.doAnswer
 GET        /doCalculate         controllers.myserver.AllAnswersController.doCalculate
+GET        /doBlock120          controllers.myserver.AllAnswersController.doBlock
 
 # Map static resources from the /public folder to the /assets URL path
 GET        /assets/*file        controllers.Assets.versioned(path="/public", file: Asset)

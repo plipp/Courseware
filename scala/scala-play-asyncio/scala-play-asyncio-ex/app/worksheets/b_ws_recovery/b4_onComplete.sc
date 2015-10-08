@@ -8,15 +8,13 @@ val possiblyFailingFuture = Future {
 }
 
 // ------------------------------------------------------------------
-// onX
-var result = -100 // mutable!
+// Callbacks II
 possiblyFailingFuture.onComplete((eventualCounter: Try[Int]) =>
   eventualCounter match {
-    case Success(cnt) => result = cnt
-    case Failure(_) => result = 0
+    case Success(cnt) => println("Success")
+    case Failure(_) => println("Oh no!")
   })
 
 possiblyFailingFuture.value
 possiblyFailingFuture.isCompleted
-result
 

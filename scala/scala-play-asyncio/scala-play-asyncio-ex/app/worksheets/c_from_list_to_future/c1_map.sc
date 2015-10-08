@@ -6,12 +6,12 @@ import scala.concurrent.{Await, Future}
 
 // Lists
 val flatList = List(1,2,3)
-val mappedList = flatList map ( i => String.valueOf(i*2) )
+// TODO map*99
 
 // Futures
 val future = Future {1}
-val mappedFuture = future map ( i => String.valueOf(i*99))
+// TODO map*99
 
 // resolve future: blocking
 Await.result(future, Duration(2, TimeUnit.SECONDS))
-Await.result(mappedFuture, Duration(2, TimeUnit.SECONDS))
+// TODO await mapped result
