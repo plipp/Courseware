@@ -1,7 +1,7 @@
-# Introduction in the Playframework -Scala Flavor
+# Introduction in Scala Futures (as used in Play Framework)
 
-Bases on the Typesafe Reactor project [Scala Seed](https://www.typesafe.com/activator/template/play-scala-reactive-platform-15v09)
-([Sources](https://github.com/playframework/playframework/tree/master/templates/play-scala))
+## The Problem
+see [Async IO - Threaded vs Evented](https://github.com/plipp/Courseware/tree/master/play)
 
 ## Preconditions
 
@@ -11,6 +11,11 @@ Bases on the Typesafe Reactor project [Scala Seed](https://www.typesafe.com/acti
 ## Topics
 
 Inspired by [Play Framework: async I/O without the thread pool and callback hell](http://engineering.linkedin.com/play/play-framework-async-io-without-thread-pool-and-callback-hell)
+
+
+### Codebase
+Bases on the Typesafe Reactor project [Scala Seed](https://www.typesafe.com/activator/template/play-scala-reactive-platform-15v09)
+([Sources](https://github.com/playframework/playframework/tree/master/templates/play-scala))
 
 ### 1. Basic Skeleton
 
@@ -66,7 +71,3 @@ TODO loan-pattern, timeout-handling, authorization...
 # Links
 
 - [official Scala Future Site](http://docs.scala-lang.org/overviews/core/futures.html)
-
-# TODOs
-- own blocking controller
-- Tests (instead of WS) for exercises
