@@ -34,6 +34,7 @@ public class DeadlockChecker {
     return map.values();
   }
 
+  @SuppressWarnings("unused")
   public void ignoreThreads(Thread[] threads) {
     for (Thread thread : threads) {
       threadIdsToIgnore.add(thread.getId());

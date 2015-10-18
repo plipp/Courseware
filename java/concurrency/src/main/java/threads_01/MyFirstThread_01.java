@@ -21,7 +21,7 @@ public class MyFirstThread_01 {
     // It's just a hint!
     // Same applies to thread-priorities
     // => neither rely on yield() nor on setPriority()
-    thread.yield();
+    Thread.yield();
 
     System.out.println("My First MAIN Thread is executing");
     thread.join(); // waits for run to termininate

@@ -8,40 +8,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Downloader extends Thread {
-  private final URL url;
-  private final String outputFilename;
-  private List<ProgressListener> listeners;
+    private final URL url;
+    private final String outputFilename;
+    private List<ProgressListener> listeners;
 
-  public Downloader(URL url, String outputFilename) {
-    this.url = url;
-    this.outputFilename = outputFilename;
-    listeners = new ArrayList<ProgressListener>();
-  }
-
-  public synchronized void addListener(ProgressListener listener) {
-    listeners.add(listener);
-  }
-
-  public synchronized void removeListener(ProgressListener listener) {
-    listeners.remove(listener);
-  }
-
-  private synchronized void updateProgress(int n) {
-    for (ProgressListener listener : listeners)
-      listener.onProgress(n);
-  }
-
-
-  @Override
-  public void run() {
-    for (int i = 0; i < 100; i++) {
-      try {
-        Thread.sleep(2000);
-        updateProgress(i);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
+    public Downloader(URL url, String outputFilename) {
+        this.url = url;
+        this.outputFilename = outputFilename;
+        listeners = new ArrayList<ProgressListener>();
     }
-  }
+
+    public synchronized void addListener(ProgressListener listener) {
+        listeners.add(listener);
+    }
+
+    public synchronized void removeListener(ProgressListener listener) {
+        listeners.remove(listener);
+    }
+
+    private synchronized void updateProgress(int n) {
+        for (int i = 0; i < listeners.size(); i++) {
+            listeners.get(i).onProgress(n);
+        }
+    }
+
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 100; i++) {
+            try {
+                Thread.sleep(200);
+                updateProgress(i);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }
