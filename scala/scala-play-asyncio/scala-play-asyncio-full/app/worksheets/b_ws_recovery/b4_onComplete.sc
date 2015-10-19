@@ -18,4 +18,3 @@ possiblyFailingFuture.onComplete((eventualCounter: Try[Int]) =>
 
 possiblyFailingFuture.value
 result
-

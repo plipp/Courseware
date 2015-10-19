@@ -6,7 +6,7 @@ import scala.concurrent.{Await, Future, Promise}
 
 val f98: Future[Int] = Future.successful(98)
 val f99: Future[Int] =  Future {
-//  Thread.sleep(500)
+//  TODO Thread.sleep(500)
   100
 }
 

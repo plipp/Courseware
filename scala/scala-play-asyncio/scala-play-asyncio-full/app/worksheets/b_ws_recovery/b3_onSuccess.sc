@@ -6,10 +6,7 @@ val possiblyFailingFuture = Future {if (counter<0) throw new IllegalArgumentExce
 
 // ------------------------------------------------------------------
 // Callbacks I
-var result = -100 // mutable!
-possiblyFailingFuture.onFailure({case _:IllegalArgumentException => result = 0})
-possiblyFailingFuture.onSuccess({case cnt => result = cnt})
-
+possiblyFailingFuture.onFailure({case _:IllegalArgumentException => println("Oh no")})
+possiblyFailingFuture.onSuccess({case cnt => println("Success")})
 possiblyFailingFuture.value
-result
-
+possiblyFailingFuture.isCompleted
