@@ -6,8 +6,8 @@ import scala.concurrent.{Await, Future, Promise}
 
 val f98: Future[Int] = Future.successful(98)
 val f99: Future[Int] =  Future {
-//  Thread.sleep(500)
-  100
+  Thread.sleep(500)
+  99
 }
 
 // combines futures
@@ -23,3 +23,5 @@ def first[T](f: Future[T], g: Future[T]): Future[T] = {
 }
 
 val result = Await.result(first(f99, f98), Duration(2000, TimeUnit.SECONDS))
+
+println ("FINISHED")
