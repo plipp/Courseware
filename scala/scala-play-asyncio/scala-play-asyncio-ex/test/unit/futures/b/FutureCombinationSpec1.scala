@@ -85,10 +85,11 @@ class FutureCombinationSpec1 extends Specification {
         Duration.Inf)
 
       result mustEqual n*5050
-      duration must be between(delay, n*delay)
+      duration must be between(delay, (n-1)*delay)
     }
   }
 
+  // TODO me: introduce loan-pattern!
   private def withTiming[T] (description: String)(block: => Future[T]) : Future[(T, Long)] = {
     val start: Long = System.currentTimeMillis()
     block map { result =>

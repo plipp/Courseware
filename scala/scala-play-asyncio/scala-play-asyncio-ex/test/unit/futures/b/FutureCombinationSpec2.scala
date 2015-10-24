@@ -15,7 +15,7 @@ import scala.concurrent.{Await, Future}
 
 @RunWith(classOf[JUnitRunner])
 // REQUIRES: Started Play!!! (=>this is actually not a unit test)
-class FutureCombinationSpec extends Specification with BeforeAfterAll {
+class FutureCombinationSpec2 extends Specification with BeforeAfterAll {
 
   // helper
 
@@ -32,6 +32,8 @@ class FutureCombinationSpec extends Specification with BeforeAfterAll {
    * 3) "http://localhost:9000/doCalculate?number=$(answer1 + answer2)
    * @return the result-Future
    */
+
+  // TODO: explain when the Futures start to fetch data in your implementation
   def combineWithFor(): Future[Int] = ???
 
   // test
@@ -51,6 +53,8 @@ class FutureCombinationSpec extends Specification with BeforeAfterAll {
    * 3) "http://localhost:9000/doCalculate?number=$(answer1 + answer2)
    * @return the result-Future
    */
+
+  // TODO: explain when the Futures start to fetch data in your implementation
   def combineWithAsyncAwait(): Future[Int] = ???
 
   // test

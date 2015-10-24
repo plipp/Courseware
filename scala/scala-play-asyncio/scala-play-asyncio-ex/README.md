@@ -1,8 +1,5 @@
 # Introduction in Scala Futures (as used in Play Framework)
 
-## The Problem
-see [Async IO - Threaded vs Evented](https://github.com/plipp/Courseware/tree/master/play)
-
 ## Preconditions
 
 - IntelliJ CE or UE with SBT-Plugin
@@ -10,14 +7,21 @@ see [Async IO - Threaded vs Evented](https://github.com/plipp/Courseware/tree/ma
 
 ## Topics
 
-Inspired by [Play Framework: async I/O without the thread pool and callback hell](http://engineering.linkedin.com/play/play-framework-async-io-without-thread-pool-and-callback-hell)
+- [blocking vs. non-blocking IO](app/worksheets/a_motivation)
+- [Try vs. Future + Error Handling](app/worksheets/b_ws_recovery)
+  - exercise:
+    - app/worksheets/b_ws_recovery/exercises/b1_recover_ex.sc
+    - unit.futures.b.FutureRecoverySpec
+- [List -> Future + Combining Futures](app/worksheets/c_from_list_to_future)
+  - exercises: 
+    - unit.futures.b.FutureCombinationSpec1
+    - unit.futures.b.FutureCombinationSpec2 (requires running play: ./sbt run)
 
-
-### Codebase
+# Typesafe Codebase for Play
 Bases on the Typesafe Reactor project [Scala Seed](https://www.typesafe.com/activator/template/play-scala-reactive-platform-15v09)
 ([Sources](https://github.com/playframework/playframework/tree/master/templates/play-scala))
 
-### 1. Basic Skeleton
+## 1. Basic Skeleton
 
 - _application.conf_
 - routes
@@ -34,40 +38,16 @@ Bases on the Typesafe Reactor project [Scala Seed](https://www.typesafe.com/acti
 
 - Running Play in IntelliJ: Play2 Run Configuration (or: `sbt ~run`)
 
-### 2. WebService Calls
+## 2. Additional Controllers
 
-0. _worksheets/a_motivation/*
-
-Play Controllers
-
-1. _controllers.proxySample.BlockingProxyController_
-2. _controllers.proxySample.NonBlockingProxyController_
-3. _controllers.proxySample.NonBlockingRecoveredProxyController_
-
-### 3. Error handling
-
-Future-Errorhandling-Worksheets
-
-- _controllers/b_ws_recovery/*_ 
-  
-Controller    
-
-- _controllers.proxySample.NonBlockingRecoveredProxyController_
-
-### 4. From List (Monad) to Future
-
-- _controllers/c_from_list_to_future/*_
-
-#### Key difference:
-
-- A **_List_** calls the function, passed to _map_, _flatMap_, ... **immediately**,
-- a **_Future_** calls it when the I/O has completed and **data is available**.
-
-### 6. Composition
-
-TODO loan-pattern, timeout-handling, authorization...
+1. [Controllers as Blocking/non blocking Proxy sample](app/controllers/proxySample/): to be shown together with _app/worksheets/a_motivation_
+2. [API to be called by unit.futures.b.FutureCombinationSpec2](app/controllers/myserver)
 
 
 # Links
-
 - [official Scala Future Site](http://docs.scala-lang.org/overviews/core/futures.html)
+
+# TODO
+- More Play-Stuff
+  - Async in Controllers
+  - Testing Controllers ...

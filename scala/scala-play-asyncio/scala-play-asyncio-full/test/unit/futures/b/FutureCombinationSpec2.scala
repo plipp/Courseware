@@ -16,7 +16,7 @@ import scala.async.Async.async
 
 @RunWith(classOf[JUnitRunner])
 // REQUIRES: Started Play!!! (=>this is actually not a unit test)
-class FutureCombinationSpec extends Specification with BeforeAfterAll {
+class FutureCombinationSpec2 extends Specification with BeforeAfterAll {
 
   // helper
 
@@ -33,6 +33,28 @@ class FutureCombinationSpec extends Specification with BeforeAfterAll {
    * 3) "http://localhost:9000/doCalculate?number=$(answer1 + answer2)
    * @return the result-Future
    */
+  
+  // Note, that in the following implementation the future is started, before
+  //       entering the for-comprehension!
+  def combineWithFor2(): Future[Int] = {
+    val f1: Future[Int] = fetchContentAsInt("http://localhost:9000/doAnswer?question=howMany")
+    val f2: Future[Int] = fetchContentAsInt("http://localhost:9000/doAnswer?question=Again")
+    for {
+      answer1 <- f1
+      answer2 <- f2
+      answer3 <- fetchContentAsInt(s"http://localhost:9000/doCalculate?number=${answer1 + answer2}")} yield answer3
+  }
+
+  // test
+  "combineWithFor2" should {
+    "calculate combined result" in {
+      val result = Await.result(combineWithFor2(), Duration.Inf)
+      result mustEqual 142 //== (101+42)-1
+    }
+  }
+
+  // Note, that in the following implementation the future is   n o t   started, before
+  //       entering the for-comprehension!
   def combineWithFor(): Future[Int] =
     for {answer1 <- fetchContentAsInt("http://localhost:9000/doAnswer?question=howMany")
          answer2 <- fetchContentAsInt("http://localhost:9000/doAnswer?question=Again")
